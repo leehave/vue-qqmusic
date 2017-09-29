@@ -68,7 +68,8 @@
     filters: {
 			playcount(v) {
 				if(!v) return "0";
-				return v < 10e3 ? v : ((v / 10e3).toFixed(1) + '万')
+        return v < 10e3 ? v : ((v / 10e3).toFixed(1) + '万')
+        // return v >= 1e8 ? Math.floor(v / 1e7) / 10 + "亿" : v >= 1e5 ? Math.floor(v / 1e3) / 10 + "万" : v
 			}
 		},
     watch: {
