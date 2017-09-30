@@ -1,10 +1,10 @@
 <template>
   <div class="search">
     <div class="search_box current_page loaded">
-      <search-content ref="search-content" @query="onQueryChange"></search-content>
+      <search-content ref="search-content"></search-content>
   </div>
   <!-- hot search -->
-  <div ref="shortcutWrapper" class="shortcut-wrapper" v-show="!query">
+  <div ref="shortcutWrapper" class="shortcut-wrapper" >   <!--v-show="!query"-->
     <scroll :refreshDelay="refreshDelay" ref="shortcut" class="shortcut" :data="shortcut">
         <div>
           <div class="hot-key mod_search_result">
@@ -16,7 +16,7 @@
               </li>
             </ul>
           </div>
-          <div class="search-history" v-show="searchHistory.length">
+          <!-- <div class="search-history" v-show="searchHistory.length">
             <h1 class="title">
               <span class="text">搜索历史</span>
               <span @click="showConfirm" class="clear">
@@ -24,30 +24,31 @@
               </span>
             </h1>
             <search-result @delete="deleteSearchHistory" @select="addQuery" :searches="searchHistory"></search-result>
-          </div>
+          </div> -->
         </div>
     </scroll>
     </div>
-    <div class="search-result" v-show="query" ref="searchResult">
+    <!-- <div class="search-result" v-show="query" ref="searchResult">
       <searchList @listScroll="blurInput" @select="saveSearch" ref="search-list" :query="query"></searchList>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import SearchContent from '../../base/search-content/search-content'
   import { getHotKey } from '../../api/search'
-  import SearchList from '../search-list/search-list'
-  import SearchResults from '../../base/search-result/search-result'
+  // import SearchList from '../search-list/search-list'
+  // import SearchResults from '../../base/search-result/search-result'
   import {ERR_OK} from '../../api/config'
-  import {searchMixin} from '../../common/js/mixin'
+  // import {searchMixin} from '../../common/js/mixin'
   import Scroll from '../../base/scroll/scroll'
   import {mapActions} from 'vuex'
   export default {
-    mixins: [searchMixin],
+    // mixins: [searchMixin],
     data() {
       return{
-        hotKey: []
+        hotKey: [],
+        special_key:[]
       }
     },
     computed: {
@@ -91,8 +92,8 @@
     },
     components: {
       SearchContent,
-      SearchList,
-      SearchResults,
+      // SearchList,
+      // SearchResults,
       Scroll
     }
   }
